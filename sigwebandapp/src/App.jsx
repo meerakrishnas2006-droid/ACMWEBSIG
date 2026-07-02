@@ -1,122 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import LoadingScreen from './components/LoadingScreen'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Works from './components/Works'
+import Explorations from './components/Explorations'
+import Members from './components/Members'
+import Stats from './components/Stats'
+import Contact from './components/Contact'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [activeSection, setActiveSection] = useState('home')
+
+  useEffect(() => {
+    if (isLoading) return
+    const sectionIds = ['home', 'works', 'achievements', 'members', 'stats', 'contact']
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      const detectionY = scrollY + window.innerHeight * 0.4
+      let current = 'home'
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        // getBoundingClientRect().top + scrollY = absolute position from document top
+        const sectionTop = el.getBoundingClientRect().top + scrollY
+        if (sectionTop <= detectionY) current = id
+      }
+      setActiveSection(current)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // set correct state on mount
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isLoading])
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <LoadingScreen key="loading" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {!isLoading && (
+        <>
+          <Navbar activeSection={activeSection} />
+          <main>
+            <Hero />
+            <Works />
+            <Explorations />
+            <Members />
+            <Stats />
+            <Contact />
+          </main>
+        </>
+      )}
     </>
   )
 }
-
-export default App

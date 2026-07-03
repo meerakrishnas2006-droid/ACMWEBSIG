@@ -91,8 +91,47 @@ export default function Members() {
           ))}
         </div>
 
+        {/* Join CTA banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 md:p-8 rounded-3xl bg-surface/40 border border-stroke text-center sm:text-left"
+        >
+          <div>
+            <h3 className="text-xl md:text-2xl font-body font-light text-text-primary">
+              Want to see your face <em className="font-display italic not-italic">here</em>?
+            </h3>
+            <p className="text-sm text-muted font-body mt-1">Applications for the new batch are open.</p>
+          </div>
+          <JoinButton />
+        </motion.div>
+
       </div>
     </section>
+  )
+}
+
+function JoinButton() {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <button
+      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-body font-medium text-bg bg-text-primary cursor-pointer overflow-visible flex-shrink-0 transition-transform duration-300"
+      style={{ transform: hovered ? 'scale(1.05)' : 'scale(1)' }}
+    >
+      {hovered && (
+        <span
+          className="absolute rounded-full pointer-events-none"
+          style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+        />
+      )}
+      <span className="relative z-10">Apply to join</span>
+      <span className="relative z-10 text-xs">↗</span>
+    </button>
   )
 }
 
@@ -181,9 +220,12 @@ function MemberCard({ member, index }) {
 }
 
 function SocialBtn({ href, icon }) {
+  const external = href && href !== '#'
   return (
     <a
       href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      aria-label={icon === 'GH' ? 'GitHub profile' : 'LinkedIn profile'}
       className="w-7 h-7 rounded-full bg-stroke/50 hover:bg-white/10 flex items-center justify-center text-[10px] font-body font-bold text-muted hover:text-text-primary transition-all duration-200"
     >
       {icon}

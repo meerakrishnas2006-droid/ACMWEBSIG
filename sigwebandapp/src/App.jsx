@@ -3,10 +3,13 @@ import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './components/LoadingScreen'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Domains from './components/Domains'
 import Works from './components/Works'
 import Explorations from './components/Explorations'
 import Members from './components/Members'
+import Events from './components/Events'
 import Stats from './components/Stats'
+import WhyJoin from './components/WhyJoin'
 import Contact from './components/Contact'
 
 export default function App() {
@@ -15,7 +18,7 @@ export default function App() {
 
   useEffect(() => {
     if (isLoading) return
-    const sectionIds = ['home', 'works', 'achievements', 'members', 'stats', 'contact']
+    const sectionIds = ['home', 'what-we-do', 'works', 'achievements', 'members', 'events', 'stats', 'why-join', 'contact']
 
     const handleScroll = () => {
       const scrollY = window.scrollY
@@ -49,10 +52,13 @@ export default function App() {
           <Navbar activeSection={activeSection} />
           <main>
             <Hero />
+            <Domains />
             <Works />
             <Explorations />
             <Members />
+            <Events />
             <Stats />
+            <WhyJoin />
             <Contact />
           </main>
         </>

@@ -46,6 +46,41 @@ const cards = [
     top: '55%', left: '28%', width: 330, rotation: 2,
     yFrom: 1050, yTo: -500,
   },
+  {
+    id: 6,
+    // Code on screen — top-right, visible early
+    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&q=80&auto=format&fit=crop',
+    top: '22%', right: '22%', width: 300, rotation: -5,
+    yFrom: 200, yTo: -820,
+  },
+  {
+    id: 7,
+    // Circuit board — enters from below, right side
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop',
+    top: '68%', right: '10%', width: 320, rotation: 6,
+    yFrom: 880, yTo: -560,
+  },
+  {
+    id: 8,
+    // Colorful code editor — enters from below, left side
+    image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&q=80&auto=format&fit=crop',
+    top: '18%', left: '22%', width: 300, rotation: 4,
+    yFrom: 620, yTo: -760,
+  },
+  {
+    id: 9,
+    // Server / cloud — bottom-left, last group
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80&auto=format&fit=crop',
+    top: '60%', left: '6%', width: 300, rotation: -3,
+    yFrom: 1150, yTo: -480,
+  },
+  {
+    id: 10,
+    // Team collaborating — mid-right filler
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80&auto=format&fit=crop',
+    top: '48%', right: '26%', width: 260, rotation: 3,
+    yFrom: 1000, yTo: -520,
+  },
 ]
 
 function generateStars(count) {
@@ -158,6 +193,7 @@ export default function Explorations() {
                 <img
                   src={card.image}
                   alt=""
+                  loading="lazy"
                   className="w-full aspect-[4/3] object-cover"
                   draggable={false}
                 />
@@ -227,25 +263,14 @@ export default function Explorations() {
   )
 }
 
-function ExplorationCard({ card, onClick }) {
-  return (
-    <motion.div
-      className="relative rounded-2xl overflow-hidden cursor-pointer border border-white/[0.08] shadow-2xl shadow-black/70"
-      style={{ rotate: card.rotation }}
-      whileHover={{ scale: 1.04, rotate: 0 }}
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      onClick={onClick}
-    >
-      <img src={card.image} alt="" className="w-full aspect-[4/3] object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/25 pointer-events-none" />
-    </motion.div>
-  )
-}
-
 function DribbbleButton() {
   const [hovered, setHovered] = useState(false)
+  const handleClick = () => {
+    document.getElementById('stats')?.scrollIntoView({ behavior: 'smooth' })
+  }
   return (
     <button
+      onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-body text-text-primary border border-stroke/60 transition-all duration-300 cursor-pointer overflow-visible"
@@ -256,8 +281,10 @@ function DribbbleButton() {
           style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
         />
       )}
-      <svg className="w-3.5 h-3.5 text-muted flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12 6.628 0 12-5.372 12-12 0-6.627-5.372-12-12-12zm7.92 5.602a10.07 10.07 0 012.08 6.14c-.305-.063-3.36-.682-6.435-.295-.07-.172-.135-.35-.207-.525-.198-.494-.415-1-.644-1.48 3.412-1.39 4.97-3.385 5.206-3.84zM12 2.008a9.982 9.982 0 016.51 2.404c-.207.318-1.615 2.185-4.913 3.42-1.537-2.82-3.242-5.147-3.511-5.514A10.05 10.05 0 0112 2.008zm-3.768.699c.26.351 1.94 2.683 3.498 5.457-4.41 1.17-8.304 1.15-8.718 1.143a10.041 10.041 0 015.22-6.6zM2.002 12.015v-.26c.4.008 4.969.07 9.684-1.343.27.527.53 1.063.77 1.6-.12.034-.242.07-.362.108-4.886 1.57-7.49 5.882-7.7 6.23a9.97 9.97 0 01-2.392-6.335zm9.998 9.997a9.963 9.963 0 01-6.049-2.03c.163-.34 2.048-4.028 7.4-5.896.02-.007.04-.015.06-.021a43.89 43.89 0 011.87 6.645 9.938 9.938 0 01-3.281.302zm5.179-1.358a46.125 46.125 0 00-1.762-6.235c2.872-.456 5.392.293 5.7.39a10.024 10.024 0 01-3.938 5.845z"/>
+      {/* Trophy icon — fits achievements */}
+      <svg className="w-3.5 h-3.5 text-muted flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z" />
+        <path d="M5 4H3v2a3 3 0 0 0 3 3M19 4h2v2a3 3 0 0 1-3 3" />
       </svg>
       <span className="relative z-10">View All Achievements</span>
       <span className="relative z-10 text-muted">»</span>

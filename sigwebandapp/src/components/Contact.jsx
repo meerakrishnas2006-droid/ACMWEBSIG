@@ -4,11 +4,13 @@ import gsap from 'gsap'
 
 const HLS_SRC = 'https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8'
 
+const CONTACT_EMAIL = 'webandapp@aseam.acm.org'
+
 const socials = [
-  { label: 'Twitter', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Dribbble', href: '#' },
-  { label: 'GitHub', href: '#' },
+  { label: 'GitHub', href: 'https://github.com' },
+  { label: 'LinkedIn', href: 'https://linkedin.com' },
+  { label: 'Instagram', href: 'https://instagram.com' },
+  { label: 'Discord', href: 'https://discord.com' },
 ]
 
 const MARQUEE_TEXT = 'BUILDING THE FUTURE • '
@@ -81,10 +83,10 @@ export default function Contact() {
           {/* CTA overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-6">
             <p className="text-xs text-white/50 uppercase tracking-[0.3em] font-body mb-4">
-              Let's connect
+              Ready to build?
             </p>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-display italic text-white mb-8 leading-tight">
-              Start a project
+              Join the club
             </h2>
             <EmailButton />
           </div>
@@ -100,6 +102,8 @@ export default function Contact() {
               <a
                 key={social.label}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs text-muted hover:text-text-primary font-body transition-colors duration-200 uppercase tracking-[0.1em]"
               >
                 {social.label}
@@ -113,7 +117,7 @@ export default function Contact() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
             </span>
-            <span className="text-xs text-muted font-body">Available for projects</span>
+            <span className="text-xs text-muted font-body">Recruiting new members</span>
           </div>
         </div>
 
@@ -130,7 +134,7 @@ function EmailButton() {
   const [hovered, setHovered] = useState(false)
   return (
     <a
-      href="mailto:aseam.acm.org"
+      href={`mailto:${CONTACT_EMAIL}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-body font-medium text-white border border-white/20 hover:border-transparent transition-all duration-300 cursor-pointer overflow-visible"
@@ -141,7 +145,7 @@ function EmailButton() {
           style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
         />
       )}
-      <span className="relative z-10">aseam.acm.org</span>
+      <span className="relative z-10">{CONTACT_EMAIL}</span>
       <span className="relative z-10 text-white/60 text-xs">↗</span>
     </a>
   )

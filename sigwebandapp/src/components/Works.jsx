@@ -70,14 +70,14 @@ export default function Works() {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em] font-body">Projects</span>
+              <div className="w-8 h-px bg-red-900/50" />
+              <span className="text-xs text-red-500 uppercase tracking-[0.3em] font-retro font-bold">OPERATIONS LOG</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-              Featured <em className="font-display italic not-italic">Projects</em>
+            <h2 className="text-4xl md:text-5xl font-display uppercase font-extrabold text-neutral-200 leading-tight">
+              Classified <span className="text-red-600 stranger-glow">Archives</span>
             </h2>
-            <p className="text-sm text-muted mt-3 max-w-xs font-body">
-              Apps and websites built by our members, from idea to deployment.
+            <p className="text-sm text-neutral-400 mt-3 max-w-xs font-body">
+              Secure assets and software built by the party, from raw code to public transmission.
             </p>
           </div>
 
@@ -104,7 +104,7 @@ function ProjectCard({ project }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`View ${project.title} on GitHub`}
-      className={`group relative md:col-span-${project.span} ${project.aspect} rounded-3xl overflow-hidden bg-surface border border-stroke cursor-pointer block`}
+      className={`group relative md:col-span-${project.span} ${project.aspect} rounded-3xl overflow-hidden bg-[#090002]/40 border border-red-950/40 hover:border-red-900/40 cursor-pointer block`}
       style={{ gridColumn: `span ${project.span}` }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
@@ -118,7 +118,7 @@ function ProjectCard({ project }) {
         src={project.image}
         alt={project.title}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-80"
         animate={{ scale: hovered ? 1.05 : 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       />
@@ -133,14 +133,14 @@ function ProjectCard({ project }) {
       />
 
       {/* Always-visible title bar (so cards never read as blank) */}
-      <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-bg/90 via-bg/40 to-transparent pointer-events-none">
-        <h3 className="text-lg font-body font-semibold text-white leading-tight">{project.title}</h3>
-        <p className="text-xs text-white/70 font-body mt-0.5">{project.subtitle}</p>
+      <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[#020204]/90 via-[#020204]/40 to-transparent pointer-events-none">
+        <h3 className="text-lg font-body font-semibold text-neutral-100 leading-tight">{project.title}</h3>
+        <p className="text-xs text-neutral-400 font-body mt-0.5">{project.subtitle}</p>
       </div>
 
       {/* Hover overlay */}
       <motion.div
-        className="absolute inset-0 bg-bg/70 backdrop-blur-lg flex flex-col justify-between p-6"
+        className="absolute inset-0 bg-[#020204]/85 backdrop-blur-lg flex flex-col justify-between p-6 vhs-noise"
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
@@ -149,7 +149,7 @@ function ProjectCard({ project }) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[11px] font-body text-text-primary px-2.5 py-1 rounded-full border border-white/15 bg-white/5"
+              className="text-[11px] font-retro text-red-500 px-2.5 py-1 rounded-full border border-red-950 bg-red-950/20"
             >
               {tag}
             </span>
@@ -157,15 +157,15 @@ function ProjectCard({ project }) {
         </div>
 
         <div>
-          <p className="text-sm text-muted font-body mb-4 max-w-xs">{project.subtitle}</p>
+          <p className="text-sm text-neutral-400 font-body mb-4 max-w-xs">{project.subtitle}</p>
           {/* Label pill */}
           <div className="relative inline-flex rounded-full overflow-visible">
             <span
               className="absolute rounded-full pointer-events-none"
-              style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+              style={{ inset: '-2px', background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }}
             />
-            <span className="relative bg-white text-bg text-sm font-body px-4 py-2 rounded-full whitespace-nowrap inline-flex items-center gap-1.5">
-              View — <em className="font-display italic not-italic">{project.title}</em>
+            <span className="relative bg-red-600 text-white font-retro uppercase font-bold text-sm px-4 py-2 rounded-full whitespace-nowrap inline-flex items-center gap-1.5 shadow-md shadow-red-950/30">
+              OPEN DIRECTORY — <span className="font-bold text-white">{project.title}</span>
               <span className="text-xs">↗</span>
             </span>
           </div>
@@ -184,16 +184,16 @@ function ViewAllButton() {
       rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative hidden md:inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-body text-text-primary border border-stroke transition-all duration-300 hover:border-transparent cursor-pointer overflow-visible"
+      className="relative hidden md:inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-retro uppercase tracking-wider font-bold text-red-500 border border-red-950/60 transition-all duration-300 hover:border-transparent cursor-pointer overflow-visible"
     >
       {hovered && (
         <span
           className="absolute rounded-full pointer-events-none"
-          style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+          style={{ inset: '-2px', background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }}
         />
       )}
-      <span className="relative z-10">View all on GitHub</span>
-      <span className="relative z-10 text-muted">↗</span>
+      <span className="relative z-10">OPEN GITHUB VAULT</span>
+      <span className="relative z-10 text-red-700 font-black">↗</span>
     </a>
   )
 }

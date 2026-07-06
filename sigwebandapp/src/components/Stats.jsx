@@ -36,7 +36,7 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="stats" className="bg-bg py-16 md:py-24 border-t border-stroke/50">
+    <section id="stats" className="bg-bg py-16 md:py-24 border-t border-red-950/40">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <motion.div
@@ -47,16 +47,16 @@ export default function Stats() {
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em] font-body">By the Numbers</span>
-            <div className="w-8 h-px bg-stroke" />
+            <div className="w-8 h-px bg-red-900/50" />
+            <span className="text-xs text-red-500 uppercase tracking-[0.3em] font-retro font-bold">METRICS</span>
+            <div className="w-8 h-px bg-red-900/50" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-            A year of <em className="font-display italic not-italic">building</em>
+          <h2 className="text-4xl md:text-5xl font-display uppercase font-extrabold text-neutral-200 leading-tight">
+            Telemetry <span className="text-red-600 stranger-glow">Recorded</span>
           </h2>
         </motion.div>
 
-        <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-0 md:divide-x md:divide-stroke/50">
+        <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-0 md:divide-x md:divide-red-950/40">
           {stats.map((stat, i) => (
             <StatItem key={stat.label} stat={stat} index={i} inView={inView} />
           ))}
@@ -76,9 +76,9 @@ function StatItem({ stat, index, inView }) {
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <span
-        className="text-5xl md:text-6xl lg:text-7xl font-display italic leading-none mb-3 tabular-nums"
+        className="text-6xl md:text-7xl font-retro leading-none mb-3 text-red-500 stranger-glow tabular-nums"
         style={{
-          background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+          background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
@@ -86,10 +86,10 @@ function StatItem({ stat, index, inView }) {
       >
         {count}{stat.suffix}
       </span>
-      <p className="text-sm font-body font-semibold text-text-primary uppercase tracking-[0.15em] mb-2">
+      <p className="text-xs font-retro font-bold text-red-500/80 uppercase tracking-[0.15em] mb-2">
         {stat.label}
       </p>
-      <p className="text-xs text-muted font-body leading-relaxed max-w-[180px]">
+      <p className="text-xs text-neutral-400 font-body leading-relaxed max-w-[180px]">
         {stat.description}
       </p>
     </motion.div>

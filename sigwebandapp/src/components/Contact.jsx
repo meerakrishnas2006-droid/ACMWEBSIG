@@ -13,7 +13,7 @@ const socials = [
   { label: 'Discord', href: 'https://discord.com' },
 ]
 
-const MARQUEE_TEXT = 'BUILDING THE FUTURE • '
+const MARQUEE_TEXT = 'HAWKINS AV CLUB • DECODING THE UPSIDE DOWN • '
 
 export default function Contact() {
   const videoRef = useRef(null)
@@ -56,11 +56,11 @@ export default function Contact() {
             muted
             loop
             playsInline
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2"
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-50"
             style={{ transform: 'translate(-50%, -50%) scaleY(-1)' }}
           />
-          {/* Heavy overlay */}
-          <div className="absolute inset-0 bg-black/60" />
+          {/* Heavy red-black overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020204]/90 via-red-950/20 to-[#020204]/90" />
 
           {/* Marquee */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden py-4">
@@ -72,7 +72,7 @@ export default function Contact() {
               {Array(20).fill(MARQUEE_TEXT).map((text, i) => (
                 <span
                   key={i}
-                  className="text-3xl md:text-5xl lg:text-6xl font-display italic text-white/20 uppercase tracking-widest pr-8"
+                  className="text-3xl md:text-5xl lg:text-6xl font-display font-black text-red-900/20 uppercase tracking-widest pr-8"
                 >
                   {text}
                 </span>
@@ -82,11 +82,11 @@ export default function Contact() {
 
           {/* CTA overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-6">
-            <p className="text-xs text-white/50 uppercase tracking-[0.3em] font-body mb-4">
-              Ready to build?
+            <p className="text-xs text-red-500/80 uppercase tracking-[0.3em] font-retro font-bold mb-4">
+              READY TO TRANSMIT?
             </p>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display italic text-white mb-8 leading-tight">
-              Join the club
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display uppercase font-black text-neutral-100 mb-8 leading-tight stranger-glow">
+              JOIN THE AV CLUB
             </h2>
             <EmailButton />
           </div>
@@ -95,7 +95,7 @@ export default function Contact() {
 
       {/* Footer bar */}
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-stroke/50">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-red-950/40">
           {/* Social links */}
           <div className="flex items-center gap-4">
             {socials.map((social) => (
@@ -104,7 +104,7 @@ export default function Contact() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-muted hover:text-text-primary font-body transition-colors duration-200 uppercase tracking-[0.1em]"
+                className="text-xs text-red-500/80 hover:text-red-400 font-retro font-bold transition-colors duration-200 uppercase tracking-[0.15em]"
               >
                 {social.label}
               </a>
@@ -114,16 +114,16 @@ export default function Contact() {
           {/* Availability */}
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600" />
             </span>
-            <span className="text-xs text-muted font-body">Recruiting new members</span>
+            <span className="text-xs text-neutral-400 font-retro font-bold uppercase tracking-wider">Signal Active · Recruiting Agents</span>
           </div>
         </div>
 
         {/* Copyright */}
-        <p className="text-center text-xs text-muted/40 font-body mt-6">
-          © 2026 ACM Student Chapter. All rights reserved.
+        <p className="text-center text-xs text-neutral-500/40 font-body mt-6">
+          © 2026 HAWKINS STUDENT CHAPTER. All rights reserved.
         </p>
       </div>
     </section>
@@ -137,16 +137,16 @@ function EmailButton() {
       href={`mailto:${CONTACT_EMAIL}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative inline-flex items-center gap-2 rounded-full px-8 py-4 text-sm font-body font-medium text-white border border-white/20 hover:border-transparent transition-all duration-300 cursor-pointer overflow-visible"
+      className="relative inline-flex items-center gap-2 rounded-full px-8 py-4 text-xs font-retro uppercase tracking-widest font-bold text-red-500 border border-red-950/60 hover:border-transparent transition-all duration-300 cursor-pointer overflow-visible"
     >
       {hovered && (
         <span
           className="absolute rounded-full pointer-events-none"
-          style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+          style={{ inset: '-2px', background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }}
         />
       )}
       <span className="relative z-10">{CONTACT_EMAIL}</span>
-      <span className="relative z-10 text-white/60 text-xs">↗</span>
+      <span className="relative z-10 text-red-600 text-xs">↗</span>
     </a>
   )
 }

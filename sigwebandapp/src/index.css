@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@500;700;800;900&family=VT323&family=Creepster&family=Rubik+Glitch&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: 0 0% 4%;
-  --surface: 0 0% 8%;
-  --text: 0 0% 96%;
-  --muted: 0 0% 53%;
-  --stroke: 0 0% 12%;
-  --accent: 0 0% 96%;
+  --bg: 220 20% 2%;
+  --surface: 350 40% 4%;
+  --text: 45 20% 90%;
+  --muted: 0 0% 55%;
+  --stroke: 0 70% 10%;
+  --accent: 0 100% 50%;
 }
 
 @layer base {
@@ -29,16 +29,29 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Scanline Overlay Effect */
+  body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 9999;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
   }
 }
 
 @layer utilities {
   .accent-gradient {
-    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+    background: linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%);
   }
 
   .accent-gradient-text {
-    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+    background: linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -53,10 +66,42 @@
     position: absolute;
     inset: -2px;
     border-radius: inherit;
-    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+    background: linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%);
     background-size: 200% 200%;
     animation: gradient-shift 6s ease infinite;
     z-index: -1;
+  }
+
+  .stranger-title {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1em;
+    color: #ff1a1a;
+    text-shadow: 0 0 4px #e50914, 0 0 12px #e50914, 0 0 25px #8b0000;
+    font-weight: 800;
+  }
+
+  .stranger-glow {
+    text-shadow: 0 0 4px #ff1a1a, 0 0 12px #ff1a1a;
+  }
+
+  .vhs-noise {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vhs-noise::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 2;
   }
 }
 
@@ -91,4 +136,78 @@
 
 .animate-role-fade-in {
   animation: role-fade-in 0.4s ease-out forwards;
+}
+
+@keyframes telekinetic-float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(0.6deg); }
+  100% { transform: translateY(-13px) rotate(-0.6deg); }
+}
+
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-3px, -2px) rotate(-0.5deg); }
+  20% { transform: translate(3px, 1px) rotate(0.5deg); }
+  30% { transform: translate(-1px, 3px) rotate(0deg); }
+  40% { transform: translate(2px, -1px) rotate(0.5deg); }
+  50% { transform: translate(-3px, 2px) rotate(-0.5deg); }
+  60% { transform: translate(3px, 3px) rotate(0deg); }
+  70% { transform: translate(-2px, -3px) rotate(0.5deg); }
+  80% { transform: translate(3px, -1px) rotate(-0.5deg); }
+  90% { transform: translate(-3px, 3px) rotate(0deg); }
+}
+
+.animate-shake {
+  animation: screen-shake 0.55s ease-in-out;
+}
+
+.telekinesis-active .group,
+.telekinesis-active button,
+.telekinesis-active a,
+.telekinesis-active img:not(.hero-bg-img) {
+  animation: telekinetic-float 4.5s ease-in-out infinite alternate !important;
+}
+
+.telekinesis-active .hero-bg-img {
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+.upside-down-active {
+  filter: grayscale(0.15) contrast(1.15) brightness(0.85) saturate(0.9);
+  background-color: #010001 !important;
+  transition: filter 1.5s ease-in-out;
+}
+
+.upside-down-active::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle, transparent 20%, rgba(2, 0, 1, 0.97) 100%), 
+    rgba(229, 9, 20, 0.04);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.upside-down-active .stranger-glow,
+.upside-down-active h1,
+.upside-down-active h2,
+.upside-down-active h3 {
+  animation: text-flicker-spooky 3s infinite alternate !important;
+}
+
+@keyframes text-flicker-spooky {
+  0%, 100% { opacity: 1; text-shadow: 0 0 10px #ff1a1a; }
+  50% { opacity: 0.9; text-shadow: 0 0 4px #ff1a1a; }
+  90% { opacity: 0.95; }
+  93% { opacity: 0.55; text-shadow: 0 0 2px #ff1a1a; }
+  95% { opacity: 0.85; }
+}
+
+.upside-down-active .group,
+.upside-down-active card,
+.upside-down-active div[class*="bg-"] {
+  border-color: rgba(229, 9, 20, 0.25) !important;
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.1) !important;
 }

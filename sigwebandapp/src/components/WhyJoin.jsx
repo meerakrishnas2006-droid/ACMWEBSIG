@@ -73,7 +73,7 @@ const headerVariants = {
 
 export default function WhyJoin() {
   return (
-    <section id="why-join" className="bg-bg py-16 md:py-24 border-t border-stroke/50">
+    <section id="why-join" className="bg-bg py-16 md:py-24 border-t border-red-950/40">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <motion.div
@@ -84,14 +84,14 @@ export default function WhyJoin() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em] font-body">Why Join</span>
-            <div className="w-8 h-px bg-stroke" />
+            <div className="w-8 h-px bg-red-900/50" />
+            <span className="text-xs text-red-500 uppercase tracking-[0.3em] font-retro font-bold">BENEFITS</span>
+            <div className="w-8 h-px bg-red-900/50" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-            You don't just join — <em className="font-display italic not-italic">you level up</em>
+          <h2 className="text-4xl md:text-5xl font-display uppercase font-extrabold text-neutral-200 leading-tight">
+            YOU DON'T JUST JOIN — <span className="text-red-600 stranger-glow">YOU LEVEL UP</span>
           </h2>
-          <p className="text-sm text-muted mt-3 max-w-lg mx-auto font-body leading-relaxed">
+          <p className="text-sm text-neutral-400 mt-3 max-w-lg mx-auto font-body leading-relaxed">
             Four years fly by. Spend them building the resume, the network, and the skills that turn a
             degree into an offer letter.
           </p>
@@ -118,30 +118,30 @@ function BenefitCard({ benefit, index }) {
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative group rounded-3xl bg-surface border border-stroke hover:border-transparent transition-all duration-300 p-6 flex flex-col cursor-default"
+      className="relative group rounded-3xl bg-[#090002]/40 border border-red-950/40 hover:border-transparent transition-all duration-300 p-6 flex flex-col cursor-default"
     >
-      {/* Gradient border on hover — matches the domain & member cards */}
+      {/* Gradient border on hover */}
       {hovered && (
         <span
           className="absolute rounded-3xl pointer-events-none"
-          style={{ inset: '-1.5px', background: 'linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+          style={{ inset: '-1.5px', background: 'linear-gradient(135deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }}
         />
       )}
 
       {/* Icon */}
       <div
-        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 text-text-primary transition-all duration-300"
+        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 text-red-500 transition-all duration-300"
         style={{
           background: hovered
-            ? 'linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)'
-            : 'hsl(0 0% 12%)',
+            ? 'linear-gradient(135deg, #ff1a1a 0%, #7f1d1d 100%)'
+            : 'hsl(350 40% 8%)',
         }}
       >
         {benefit.icon}
       </div>
 
-      <h3 className="text-lg font-body font-semibold text-text-primary mb-2">{benefit.title}</h3>
-      <p className="text-sm text-muted font-body leading-relaxed flex-1">{benefit.description}</p>
+      <h3 className="text-lg font-body font-semibold text-neutral-200 mb-2">{benefit.title}</h3>
+      <p className="text-sm text-neutral-400 font-body leading-relaxed flex-1">{benefit.description}</p>
     </motion.div>
   )
 }

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 const domains = [
   {
     title: 'Web Development',
-    description: 'Responsive, fast websites with modern frameworks — from landing pages to full-stack apps.',
+    description: 'Responsive, fast websites with modern frameworks — from Hawkins lab dashboards to full-stack portals.',
     tags: ['React', 'Next.js', 'Tailwind'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
@@ -17,7 +17,7 @@ const domains = [
   },
   {
     title: 'App Development',
-    description: 'Cross-platform mobile apps that feel native, built for real users and real problems.',
+    description: 'Cross-platform mobile apps that feel native, built for communication across dimensions.',
     tags: ['Flutter', 'React Native', 'Kotlin'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
@@ -28,7 +28,7 @@ const domains = [
   },
   {
     title: 'UI / UX Design',
-    description: 'Interfaces that are intuitive and delightful — wireframes, prototypes, and design systems.',
+    description: 'Visual interfaces that are intuitive and delightful — mapping the Upside Down in Figma.',
     tags: ['Figma', 'Prototyping', 'Motion'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
@@ -42,7 +42,7 @@ const domains = [
   },
   {
     title: 'Backend & Cloud',
-    description: 'Scalable APIs, databases, and deployments that keep everything running smoothly.',
+    description: 'Scalable APIs, databases, and secure gateways that keep the AV Club signals clear.',
     tags: ['Node', 'MongoDB', 'AWS'],
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
@@ -62,7 +62,7 @@ const headerVariants = {
 
 export default function Domains() {
   return (
-    <section id="what-we-do" className="bg-bg py-16 md:py-24 border-t border-stroke/50">
+    <section id="what-we-do" className="bg-bg py-16 md:py-24 border-t border-red-950/40">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Header */}
         <motion.div
@@ -73,14 +73,14 @@ export default function Domains() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em] font-body">What We Do</span>
+            <div className="w-8 h-px bg-red-900/50" />
+            <span className="text-xs text-red-500 uppercase tracking-[0.3em] font-retro font-bold">OPERATIONS</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-            Four domains, one <em className="font-display italic not-italic">community</em>
+          <h2 className="text-4xl md:text-5xl font-display uppercase font-extrabold text-neutral-200 leading-tight">
+            Four domains, one <span className="text-red-600 font-black stranger-glow">Party</span>
           </h2>
-          <p className="text-sm text-muted mt-3 max-w-md font-body leading-relaxed">
-            Whatever you want to build, there's a place for you here. Pick a path or explore them all.
+          <p className="text-sm text-neutral-400 mt-3 max-w-md font-body leading-relaxed">
+            Whatever you want to build, there's a slot in the party for you. Pick a path or explore them all.
           </p>
         </motion.div>
 
@@ -105,37 +105,37 @@ function DomainCard({ domain, index }) {
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative group rounded-3xl bg-surface border border-stroke hover:border-transparent transition-all duration-300 p-6 flex flex-col cursor-default"
+      className="relative group rounded-3xl bg-[#090002]/40 border border-red-950/40 hover:border-transparent transition-all duration-300 p-6 flex flex-col cursor-default"
     >
-      {/* Gradient border on hover — same treatment as the member cards */}
+      {/* Gradient border on hover */}
       {hovered && (
         <span
           className="absolute rounded-3xl pointer-events-none"
-          style={{ inset: '-1.5px', background: 'linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }}
+          style={{ inset: '-1.5px', background: 'linear-gradient(135deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }}
         />
       )}
 
       {/* Icon */}
       <div
-        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 text-text-primary transition-all duration-300"
+        className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 text-red-500 transition-all duration-300"
         style={{
           background: hovered
-            ? 'linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)'
-            : 'hsl(0 0% 12%)',
+            ? 'linear-gradient(135deg, #ff1a1a 0%, #7f1d1d 100%)'
+            : 'hsl(350 40% 8%)',
         }}
       >
         {domain.icon}
       </div>
 
-      <h3 className="text-lg font-body font-semibold text-text-primary mb-2">{domain.title}</h3>
-      <p className="text-sm text-muted font-body leading-relaxed mb-5 flex-1">{domain.description}</p>
+      <h3 className="text-lg font-body font-semibold text-neutral-200 mb-2">{domain.title}</h3>
+      <p className="text-sm text-neutral-400 font-body leading-relaxed mb-5 flex-1">{domain.description}</p>
 
       {/* Tags */}
       <div className="flex flex-wrap gap-2">
         {domain.tags.map((tag) => (
           <span
             key={tag}
-            className="text-[11px] font-body text-muted px-2.5 py-1 rounded-full border border-stroke bg-surface/50"
+            className="text-[11px] font-retro text-red-500/80 px-2.5 py-1 rounded-full border border-red-950/60 bg-[#020204]/80"
           >
             {tag}
           </span>

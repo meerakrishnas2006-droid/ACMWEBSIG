@@ -51,14 +51,14 @@ export default function Events() {
         >
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-stroke" />
-              <span className="text-xs text-muted uppercase tracking-[0.3em] font-body">What's Happening</span>
+              <div className="w-8 h-px bg-red-900/50" />
+              <span className="text-xs text-red-500 uppercase tracking-[0.3em] font-retro font-bold">TRANSMISSIONS</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-body font-light text-text-primary leading-tight">
-              Events &amp; <em className="font-display italic not-italic">workshops</em>
+            <h2 className="text-4xl md:text-5xl font-display uppercase font-extrabold text-neutral-200 leading-tight">
+              Workshops &amp; <span className="text-red-600 stranger-glow">Operations</span>
             </h2>
-            <p className="text-sm text-muted mt-3 max-w-xs font-body">
-              Hands-on sessions, hackathons, and talks — open to every member.
+            <p className="text-sm text-neutral-400 mt-3 max-w-xs font-body">
+              Radio updates, tech hackathons, and D&amp;D development sessions — open to the party.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ function EventRow({ entry, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-      className="group flex items-center gap-4 sm:gap-6 p-4 rounded-[40px] sm:rounded-full bg-surface/30 hover:bg-surface border border-stroke transition-all duration-300"
+      className="group flex items-center gap-4 sm:gap-6 p-4 rounded-[40px] sm:rounded-full bg-[#090002]/30 hover:bg-[#090002]/85 border border-red-950/40 hover:border-red-900/35 transition-all duration-300"
     >
       {/* Image */}
       <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden">
@@ -91,27 +91,27 @@ function EventRow({ entry, index }) {
           src={entry.image}
           alt={entry.title}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-500"
         />
       </div>
 
       {/* Type badge + title */}
       <div className="flex-1 min-w-0 flex items-center gap-3">
         <span
-          className="hidden sm:inline-block text-[10px] font-body font-semibold px-2.5 py-1 rounded-full text-white flex-shrink-0"
-          style={{ background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)' }}
+          className="hidden sm:inline-block text-[10px] font-retro uppercase font-bold px-2.5 py-1 rounded-full text-white flex-shrink-0"
+          style={{ background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)' }}
         >
           {entry.type}
         </span>
-        <p className="text-sm sm:text-base font-body font-medium text-text-primary group-hover:text-white transition-colors duration-200 min-w-0 truncate">
+        <p className="text-sm sm:text-base font-body font-medium text-neutral-300 group-hover:text-red-500 transition-colors duration-200 min-w-0 truncate">
           {entry.title}
         </p>
       </div>
 
       {/* Meta */}
-      <div className="flex items-center gap-4 flex-shrink-0 text-xs text-muted font-body">
+      <div className="flex items-center gap-4 flex-shrink-0 text-xs text-neutral-400 font-retro font-bold uppercase">
         <span>{entry.date}</span>
-        <span className="w-6 h-6 rounded-full border border-stroke flex items-center justify-center text-[10px] group-hover:border-white/30 transition-colors">→</span>
+        <span className="w-6 h-6 rounded-full border border-red-950/60 flex items-center justify-center text-[10px] text-red-500 group-hover:border-red-600/40 transition-colors">→</span>
       </div>
     </motion.div>
   )
@@ -124,11 +124,11 @@ function ViewAllButton() {
   return (
     <button
       onClick={handleClick}
-      className="relative hidden md:inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-body text-text-primary border border-stroke hover:border-transparent transition-all duration-300 cursor-pointer group overflow-visible"
+      className="relative hidden md:inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-retro uppercase tracking-wider font-bold text-red-500 border border-red-950/60 hover:border-transparent transition-all duration-300 cursor-pointer group overflow-visible"
     >
-      <span className="absolute rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ inset: '-2px', background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)', zIndex: -1 }} />
+      <span className="absolute rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ inset: '-2px', background: 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)', zIndex: -1 }} />
       <span className="relative z-10">Get notified</span>
-      <span className="relative z-10 text-muted">→</span>
+      <span className="relative z-10 text-red-700 font-bold">→</span>
     </button>
   )
 }

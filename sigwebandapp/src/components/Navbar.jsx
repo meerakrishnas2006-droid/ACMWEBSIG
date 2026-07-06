@@ -33,7 +33,7 @@ export default function Navbar({ activeSection }) {
       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
     >
       <div
-        className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/80 px-2 py-2 transition-shadow duration-300 ${scrolled ? 'shadow-md shadow-black/20' : ''}`}
+        className={`inline-flex items-center rounded-full backdrop-blur-md border border-red-950/40 bg-surface/80 px-2 py-2 transition-shadow duration-300 ${scrolled ? 'shadow-md shadow-red-950/10' : ''}`}
       >
         {/* Logo */}
         <motion.button
@@ -48,19 +48,19 @@ export default function Navbar({ activeSection }) {
             className="absolute inset-0 rounded-full p-[1.5px]"
             style={{
               background: logoHovered
-                ? 'linear-gradient(270deg, #89AACC 0%, #4E85BF 100%)'
-                : 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+                ? 'linear-gradient(270deg, #ff1a1a 0%, #7f1d1d 100%)'
+                : 'linear-gradient(90deg, #ff1a1a 0%, #7f1d1d 100%)',
               transition: 'background 0.4s ease',
             }}
           >
             <div className="w-full h-full rounded-full bg-bg flex items-center justify-center">
-              <span className="font-display italic text-[11px] text-text-primary leading-none">W</span>
+              <span className="font-display font-extrabold text-[12px] text-red-500 leading-none stranger-glow">AV</span>
             </div>
           </div>
         </motion.button>
 
         {/* Divider */}
-        <div className="w-px h-5 bg-stroke mx-1 hidden sm:block" />
+        <div className="w-px h-5 bg-red-950/60 mx-1 hidden sm:block" />
 
         {/* Nav links */}
         {navLinks.map(({ label, id }) => {
@@ -71,8 +71,8 @@ export default function Navbar({ activeSection }) {
               onClick={() => handleNavClick(id)}
               className={`text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 font-body transition-all duration-200 cursor-pointer whitespace-nowrap ${
                 isActive
-                  ? 'text-text-primary bg-stroke/50'
-                  : 'text-muted hover:text-text-primary hover:bg-stroke/50'
+                  ? 'text-red-500 bg-red-950/30 border border-red-900/20'
+                  : 'text-muted hover:text-red-500 hover:bg-red-950/20'
               }`}
             >
               {label}
@@ -81,11 +81,11 @@ export default function Navbar({ activeSection }) {
         })}
 
         {/* Divider */}
-        <div className="w-px h-5 bg-stroke mx-1 hidden sm:block" />
+        <div className="w-px h-5 bg-red-950/60 mx-1 hidden sm:block" />
 
         {/* Contact Us CTA */}
         <motion.button
-          className="relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 font-body text-text-primary cursor-pointer overflow-visible"
+          className="relative text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 font-body text-red-500 cursor-pointer overflow-visible"
           onHoverStart={() => setHoveredContact(true)}
           onHoverEnd={() => setHoveredContact(false)}
           whileHover={{ scale: 1.05 }}
@@ -96,13 +96,13 @@ export default function Navbar({ activeSection }) {
               className="absolute pointer-events-none rounded-full"
               style={{
                 inset: '-2px',
-                background: 'linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)',
+                background: 'linear-gradient(90deg, #ff1a1a 0%, #ea580c 100%)',
                 zIndex: -1,
               }}
             />
           )}
-          <span className="relative z-10 bg-surface/80 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-md inline-flex items-center gap-1">
-            Join Us <span className="text-[10px]">↗</span>
+          <span className="relative z-10 bg-surface/85 border border-red-950/40 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-md inline-flex items-center gap-1">
+            Join Us <span className="text-[10px] text-red-600">↗</span>
           </span>
         </motion.button>
       </div>
